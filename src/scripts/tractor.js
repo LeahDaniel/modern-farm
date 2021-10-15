@@ -6,14 +6,17 @@ import { createSoybean } from "./seeds/soybean.js"
 import { createSunflower } from "./seeds/sunflower.js"
 import { createWheat } from "./seeds/wheat.js"
 
+//Sets the corn array to a variable in order to return each object individually in the plantSeeds function.
 const cornArr = createCorn()
 
+//Iterates through each row of the plan, then each plant in each row, in order to add each plant to the plantsArray in field.js
 export const plantSeeds = (plan) => {
     for (const row of plan) {
         for (const plant of row) {
             if (plant === "Asparagus"){
                 addPlant(createAsparagus())
             } else if (plant === "Corn"){
+                // Add each corn object individually using their indexes so that there is not a nested array.
                 addPlant(cornArr[0])
                 addPlant(cornArr[1])
             } else if (plant === "Potato"){
@@ -27,4 +30,5 @@ export const plantSeeds = (plan) => {
             }   
         }
     }
+    //Does not return due to the usePlants function being used for returning the array.
 }
